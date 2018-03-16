@@ -1,0 +1,21 @@
+#gallery {
+    padding: 20px;
+    float: left;
+}
+
+.auth {
+    top: 10px;
+    left: 40px;
+    padding: 2px 4px 2px 6px;
+    width: 280px;
+    height: 220px;
+    float: left
+}
+
+.toggle {
+    margin-left: 280px;
+    left: 40px;
+    padding: 2px 4px 2px 6px;
+    width: 280px;
+    height: 220px;
+}
