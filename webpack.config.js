@@ -8,9 +8,10 @@ var webpack = require('webpack');
 module.exports = {
     context: __dirname + '/src',
     devtool: debug ? 'inline-sourcemap' : null,
+    mode: 'development',
     entry: './index.js',
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js?$/,
             exclude: /(node_modules|bower_components)/,
             loader: 'babel-loader',
