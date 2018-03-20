@@ -22,7 +22,8 @@ export default class Auth extends Component {
                 <Circle r={50} fill={{ color: authStatus.light }} stroke={{ color: '#000000' }} strokeWidth={1} />
                 <div>
                     User Name <input type="text" onChange={this.onEnterUserName.bind(this)} /> <br />
-                    Password <input type="password" onChange={this.onEnterPW.bind(this)} /> <br /> <br />
+                    Password <input type="password" onChange={this.onEnterPW.bind(this)} /> <br />
+                    Firm <input type="text" onChange={this.onEnterFirm.bind(this)} /> <br /> <br />
                     <button onClick={onCheckAuth}><strong>Check Authentication</strong></button>
                 </div>
             </div>
@@ -35,6 +36,10 @@ export default class Auth extends Component {
 
     onEnterPW(evt) {
         this.props.authStatus.pw = evt.target.value;
+    }
+
+    onEnterFirm(evt) {
+        this.props.authStatus.firm = evt.target.value;
     }
 
 }

@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { connect } from 'react-redux'
 import { render } from 'redux'
+import ldClient from 'eze-feature-toggle-js'
+import btoa from 'btoa';
 import CONST from './util/constants'
 import auth from './component/auth'
 import featureToggle from './component/featureToggle'
-import ldClient from 'eze-feature-toggle-js'
 
 let authStatus = {}
 let featureToggleStatus = {}
-
 
 const Auth = connect(
     mapAuthStateToProps,
@@ -43,7 +43,7 @@ function mapAuthDispatchToProps(dispatch) {
     return {
         onCheckAuth: (evt) => {
 
-            getResultFromIdP(authStatus.user, authStatus.pw)
+            getResultFromIdP(authStatus.user, authStatus.pw, authStatus.firm)
                 .then(response => {
                     let authCheckResult;
                     let user = {
@@ -104,7 +104,7 @@ function mapFeatureToggleDispatchToProps(dispatch) {
     }
 }
 
-function getResultFromIdP(user, pw) {
+function getResultFromIdP(user, pw, firm) {
     return new Promise((resolve, reject) => {
 
         console.log('inside getResultFromIdP');
@@ -115,8 +115,8 @@ function getResultFromIdP(user, pw) {
         xhr.addEventListener("error", transferFailed);
         xhr.addEventListener("abort", transferCanceled);
 
-        // xhr.open('GET', `http://localhost:3000/checkAuth/${user}.${pw}`, true);
-        xhr.open('POST', `http://localhost:3000/login`, true);
+        xhr.open('POST', `http://ykim9020a:3000/login`, true);
+        // xhr.open('POST', `http://localhost:3000/login`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("xsrfHeaderName", "X-CSRF-Token");
@@ -126,31 +126,24 @@ function getResultFromIdP(user, pw) {
             if (xhr.readyState > 3) {
                 if (xhr.status == 200) {
                     console.log(`response received: ${xhr.responseText}`);
-                    response.type = CONST.AUTH_AUTHENTICATED;
-                    response.firmAuthToken = JSON.parse(xhr.responseText).firmAuthToken;
+                    response.firmAuthToken = JSON.parse(xhr.responseText).UserSession.FirmAuthToken;
                     resolve(response);
-                } else if (xhr.status == 401) {
+                } else {
                     console.log(`response received: ${xhr.responseText}`);
-                    response.type = CONST.AUTH_FAILED;
-                    response.firmAuthToken = JSON.parse(xhr.responseText).firmAuthToken;
-                    resolve(response);
-                } else if (xhr.status == 500) {
-                    console.log(`response received: ${xhr.responseText}`);
-                    response.type = CONST.AUTH_SERVER_ERROR;
-                    response.firmAuthToken = JSON.parse(xhr.responseText).firmAuthToken;
                     resolve(response);
                 }
             }
         };
-        // let body = { "username": user, "password": pw };
         xhr.send(JSON.stringify({
             "username": user,
-            "password": pw
+            "password": pw,
+            "firm": firm
         }));
 
     });
 
 }
+
 
 // progress on transfers from the server to the client (downloads)
 function updateProgress(oEvent) {

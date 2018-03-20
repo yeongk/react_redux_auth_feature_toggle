@@ -21,15 +21,50 @@ const userStatus = {
 const stateControl = (state = userStatus, action) => {
     switch (action.type) {
         case CONST.AUTH_AUTHENTICATED:
-            return Object.assign({}, state, { user: action.user, authenticated: true, authorized: true, authColor: CONST.COLOR_GREEN, featureToggleColor: state.featureToggleColor });
+            return Object.assign({}, state,
+                {
+                    user: action.user,
+                    authenticated: true,
+                    authorized: true,
+                    authColor: CONST.COLOR_GREEN,
+                    featureToggleColor: state.featureToggleColor
+                });
         case CONST.AUTH_SERVER_ERROR:
-            return Object.assign({}, state, { user: action.user, authenticated: true, authorized: false, authColor: CONST.COLOR_YELLOW, featureToggleColor: state.featureToggleColor });
+            return Object.assign({}, state,
+                {
+                    user: action.user,
+                    authenticated: true,
+                    authorized: false,
+                    authColor: CONST.COLOR_YELLOW,
+                    featureToggleColor: state.featureToggleColor
+                });
         case CONST.AUTH_FAILED:
-            return Object.assign({}, state, { user: action.user, authenticated: false, authorized: false, authColor: CONST.COLOR_RED, featureToggleColor: state.featureToggleColor });
+            return Object.assign({}, state,
+                {
+                    user: action.user,
+                    authenticated: false,
+                    authorized: false,
+                    authColor: CONST.COLOR_RED,
+                    featureToggleColor: state.featureToggleColor
+                });
         case CONST.FEATURE_AVAILABLE:
-            return Object.assign({}, state, { user: state.user, authenticated: state.authenticated, authorized: state.authorized, authColor: state.authColor, featureToggleColor: CONST.COLOR_GREEN });
+            return Object.assign({}, state,
+                {
+                    user: state.user,
+                    authenticated: state.authenticated,
+                    authorized: state.authorized,
+                    authColor: state.authColor,
+                    featureToggleColor: CONST.COLOR_GREEN
+                });
         case CONST.FEATURE_UNAVAILABLE:
-            return Object.assign({}, state, { user: state.user, authenticated: state.authenticated, authorized: state.authorized, authColor: state.authColor, featureToggleColor: CONST.COLOR_RED });
+            return Object.assign({}, state,
+                {
+                    user: state.user,
+                    authenticated: state.authenticated,
+                    authorized: state.authorized,
+                    authColor: state.authColor,
+                    featureToggleColor: CONST.COLOR_YELLOW
+                });
         default:
             return state
     }

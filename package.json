@@ -12,6 +12,7 @@
   "author": "yk",
   "license": "MIT",
   "dependencies": {
+    "btoa": "^1.1.2",
     "deep-freeze": "0.0.1",
     "eze-feature-toggle-js": "git+https://github.com/yeongk/feature_toggle_js.git",
     "ldclient-js": "^1.5.1",
@@ -31,7 +32,8 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.14.0",
     "http-server": "^0.10.0",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
   }
 }
