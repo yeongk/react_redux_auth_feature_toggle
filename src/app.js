@@ -115,8 +115,8 @@ function getResultFromIdP(user, pw, firm) {
         xhr.addEventListener("error", transferFailed);
         xhr.addEventListener("abort", transferCanceled);
 
-        xhr.open('POST', `http://ykim9020a:3000/login`, true);
-        // xhr.open('POST', `http://localhost:3000/login`, true);
+        // xhr.open('POST', `http://ykim9020a:3000/login`, true);
+        xhr.open('POST', `http://localhost:3000/login`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("xsrfHeaderName", "X-CSRF-Token");

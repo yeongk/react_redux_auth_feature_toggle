@@ -18,7 +18,8 @@ For this POC, authentication checks can be done via locally running auth server 
 5. npm run
 6. server listens on port 3000
 
-For authentication, auth server needs to be set up, listening on http://localhost:3000.
+
+NOTE: For testing the authenticated user scenario, auth server needs to be set up. Between Option A and Option B, Option A would be simpler to set up.
 
 
 
