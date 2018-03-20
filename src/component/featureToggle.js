@@ -16,7 +16,7 @@ export default class FeatureToggle extends Component {
                 <div>Feature Availability</div>
                 <Circle r={50} fill={{ color: featureToggleStatus.light }} stroke={{ color: '#000000' }} strokeWidth={1} />
                 <div>
-                    Feature Toggle <input type="text" onChange={this.onEnterFeatureToggle.bind(this)} /> <br /> <br />
+                    Feature Toggle <input type="text" size="40" onChange={this.onEnterFeatureToggle.bind(this)} /> <br /> <br />
                     <button onClick={onCheckFeatureToggle}><strong>Check Feature Availability</strong></button>
                 </div>
             </div>
